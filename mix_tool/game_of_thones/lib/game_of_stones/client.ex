@@ -10,13 +10,8 @@ defmodule GameOfStones.GameClient do
   end
 
   def play(stones \\ 30) do
-    GameOfStones.Server.start(stones)
-    start_game!()
-  end
-
-  defp start_game! do
-    case GameOfStones.Server.stats do
-      {player, current_stones} ->
+    case GameOfStones.Server.set_stones(stones) do
+      { player, current_stones, :game_in_progress } ->
         IO.puts "Welcome! It's player #{player} turn. #{current_stones} stones in the pile"
     end
 
