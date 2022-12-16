@@ -2,6 +2,7 @@ defmodule GameOfStones.Application do
   use Application
 
   def start(_type, _args) do
+    # processes to supervise
 
     children = [
       GameOfStones.Storage,
@@ -10,6 +11,6 @@ defmodule GameOfStones.Application do
 
     opts = [ strategy: :one_for_one, name: GameOfStones.Supervisor ]
 
-    Supervisor.start_link(children, opts)
+    Supervisor.start_link children, opts
   end
 end
